@@ -9,9 +9,13 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
+app.get('/', (req, res) => {
+	res.send("Hello. I'm TommenG Bot.")
+})
+
 // Creates the endpoint for our webhook 
-app.post('/webhook', (req, res) => {  
- 
+app.post('/webhook', (req, res) => {
+
   let body = req.body;
 
   // Checks this is an event from a page subscription
