@@ -13,8 +13,17 @@ app.get('/', (req, res) => {
 	res.send("Hello. I'm TommenG Bot.")
 })
 
-// Creates the endpoint for our webhook 
-app.post('/webhook', (req, res) => {
+// Creates the endpoint for our line webhook
+app.post('/webhook/line', (req, res) => {
+    // let reply_token = req.body.events[0].replyToken
+    // let msg = req.body.events[0].message.text
+    // reply(reply_token, msg)
+    res.sendStatus(200)
+})
+
+
+// Creates the endpoint for our mesenger webhook
+app.post('/webhook/messenger', (req, res) => {
 
   let body = req.body;
 
@@ -40,7 +49,7 @@ app.post('/webhook', (req, res) => {
 });
 
 // Adds support for GET requests to our webhook
-app.get('/webhook', (req, res) => {
+app.get('/webhook/messenger', (req, res) => {
 
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "TOMMENG"
