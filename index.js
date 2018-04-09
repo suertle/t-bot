@@ -25,4 +25,4 @@ app.get('/webhook/messenger', Messenger.postWebhook)
 app.post('/webhook/line', Line.postWebhook)
 
 // interval check for changing
-setInterval(ChangeDetector.checkValue, 10*1000)
+setInterval(ChangeDetector.checkValue, 30*1000)
