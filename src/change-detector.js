@@ -1,6 +1,7 @@
-const scrapeIt = require("scrape-it"),
+const
+  scrapeIt = require("scrape-it"),
+  Line = require('./line')
 
-const delay = 10
 let previousValue
 let index = 0
 let src = [
@@ -14,15 +15,13 @@ let src = [
   }
 ]
 
-checkValue()
-setInterval(checkValue, delay*1000)
-
-function checkValue(){
-  scrapeIt(src[index].url, { 
+exports.checkValue = function() {
+  scrapeIt(src[index].url, {
     news: src[index].selector
   }).then(( {data, response} ) => {
     const newValue = data.news
-    if( previousValue !== newValue ){
+    if (previousValue !== newValue) {
+      Line.pushMessage(newValue)
       console.log(`${previousValue} -> ${newValue}`)
     }
     else {
