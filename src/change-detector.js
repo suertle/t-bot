@@ -1,6 +1,6 @@
 const
-  scrapeIt = require("scrape-it"),
-  Line = require('./line')
+  request  = require('request'),
+  scrapeIt = require("scrape-it")
 
 let previousValue
 let index = 0
@@ -21,7 +21,7 @@ exports.checkValue = function() {
   }).then(( {data, response} ) => {
     const newValue = data.news
     if (previousValue !== newValue) {
-      Line.pushMessage(newValue)
+      sendMessage(newValue)
       console.log(`${previousValue} -> ${newValue}`)
     }
     else {
@@ -30,5 +30,17 @@ exports.checkValue = function() {
     previousValue = newValue
   }).catch(e => {
     console.error('ERROR => ', e)
+  })
+}
+
+function sendMessage(message) {
+  request.post({
+    url: 'https://tommeng-bot.herokuapp.com/sendMessage',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({message: message})
+  }, (err, res, body) => {
+    console.log(res.body + '...')
   })
 }
