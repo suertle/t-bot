@@ -2,7 +2,7 @@ const
   request  = require('request'),
   scrapeIt = require("scrape-it")
 
-let previousValue
+let previousValue = 'QLC Competition Has Now Concluded'
 let index = 0
 let src = [
   {
