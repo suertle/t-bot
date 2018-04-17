@@ -9,9 +9,10 @@ const
   ChangeDetector  = require('./src/change-detector')
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log('webhook is listening..'))
+app.listen(process.env.PORT || 1338, () => console.log('webhook is listening..'))
 
 app.get('/', Test.get)
 
 // interval check for changing
+// ChangeDetector.checkValue()
 setInterval(ChangeDetector.checkValue, 60*1000)
